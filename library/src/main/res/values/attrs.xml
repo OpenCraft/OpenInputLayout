@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="OpenInputLayout">
+
+        <attr name="android:hint" />
+        <attr name="android:textColorHint" />
+        <attr name="labelSpacingExtra" format="dimension" />
+        <attr name="moveLabelUp" format="boolean" />
+        <attr name="counterEnabled" format="boolean" />
+        <attr name="counterMaxLength" format="integer" />
+        <attr name="counterOverflowTextAppearance" format="reference" />
+        <attr name="counterTextAppearance" format="reference" />
+        <attr name="errorEnabled" format="boolean" />
+        <attr name="errorTextAppearance" format="reference" />
+        <attr name="hintAnimationEnabled" format="boolean" />
+        <attr name="hintEnabled" format="boolean" />
+        <attr name="hintTextAppearance" format="reference" />
+        <!--<attr name="android:passwordToggleContentDescription"/>-->
+        <attr name="passwordToggleDrawable" format="reference" />
+        <attr name="passwordToggleEnabled" format="boolean" />
+        <attr name="passwordToggleTint" format="color" />
+
+    </declare-styleable>
+
+</resources>
