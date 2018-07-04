@@ -60,7 +60,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 /**
  * >>> Customized version of TextInputLayout intended to allow the hint to move below
  * >>> the edittext with some margin - João Rutkoski
@@ -186,7 +185,7 @@ public class OpenInputLayout extends LinearLayout implements WithHint {
 
     public OpenInputLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         // Can't call through to super(Context, AttributeSet, int) since it doesn't exist on API 10
-        super(context, attrs);
+        super(context, attrs, defStyleAttr);
 
         mCollapsingTextHelper = new OpenCollapsingTextHelper(this, attrs);
 
@@ -269,8 +268,9 @@ public class OpenInputLayout extends LinearLayout implements WithHint {
         if (child instanceof EditText) {
             // Make sure that the EditText is vertically at the bottom, so that it sits on the
             // EditText's underline
+            child.setPadding(0, 0, 0, 100);
             FrameLayout.LayoutParams flp = new FrameLayout.LayoutParams(params);
-            flp.gravity = Gravity.CENTER_VERTICAL | (flp.gravity & ~Gravity.VERTICAL_GRAVITY_MASK);
+            flp.gravity = Gravity.TOP;
             mInputFrame.addView(child, flp);
 
             // Now use the EditText's LayoutParams as our own and update them to make enough space
@@ -1378,15 +1378,13 @@ public class OpenInputLayout extends LinearLayout implements WithHint {
                     l, rect.top + mEditText.getCompoundPaddingTop(),
                     r, rect.bottom - mEditText.getCompoundPaddingBottom());
             if (mMoveLabelUp) {
-
                 mCollapsingTextHelper.setCollapsedBounds(l, getPaddingTop(),
                         r, bottom - top - getPaddingBottom());
                 mCollapsingTextHelper.setCollapsedTextGravity(Gravity.TOP);
             } else {
-
                 mCollapsingTextHelper.setCollapsedBounds(l, mEditText.getBottom(),
                         r, bottom);
-                mCollapsingTextHelper.setCollapsedTextGravity(Gravity.BOTTOM);
+                mCollapsingTextHelper.setCollapsedTextGravity(Gravity.CENTER_VERTICAL);
             }
 
             mCollapsingTextHelper.recalculate();

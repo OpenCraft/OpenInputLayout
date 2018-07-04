@@ -19,6 +19,7 @@ import android.support.v4.view.ViewCompat;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Interpolator;
@@ -28,7 +29,7 @@ public class OpenCollapsingTextHelper {
     // by using our own texture
     private static final boolean USE_SCALING_TEXTURE = Build.VERSION.SDK_INT < 18;
 
-    private static final boolean DEBUG_DRAW = false;
+    private static final boolean DEBUG_DRAW = true;
     private static final Paint DEBUG_DRAW_PAINT;
 
     static {
@@ -189,7 +190,6 @@ public class OpenCollapsingTextHelper {
         TypedArray a = mView.getContext().getTheme().obtainStyledAttributes(resId,
                 android.support.v7.appcompat.R.styleable.TextAppearance);
 
-
         if (a.hasValue(android.support.v7.appcompat.R.styleable.TextAppearance_android_textColor)) {
             mCollapsedTextColor = a.getColorStateList(
                     android.support.v7.appcompat.R.styleable.TextAppearance_android_textColor);
@@ -342,7 +342,7 @@ public class OpenCollapsingTextHelper {
                 mPositionInterpolator);
         mCurrentDrawY = lerp(mExpandedDrawY, mCollapsedDrawY, fraction,
                 mPositionInterpolator);
-
+        Log.d("OFFSET Y", String.valueOf(mCurrentDrawY) + mView.getContext().getResources().getResourceName(mView.getId()));
         setInterpolatedTextSize(lerp(mExpandedTextSize, mCollapsedTextSize,
                 fraction, mTextSizeInterpolator));
 
